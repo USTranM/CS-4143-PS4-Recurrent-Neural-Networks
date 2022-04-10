@@ -1,0 +1,49 @@
+\documentclass[letterpaper]{article}
+\usepackage[]{geometry}
+\geometry{letterpaper}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{UAFS Computer Science -- Capstone Proposal}
+\rhead{Spring 2022}
+
+\cfoot{\thepage}
+
+
+%BE SURE TO UPDATE THE WEEK # AND DATE
+\title{Problem Set 4: Recurrent Neural Networks}
+
+\author{Martin Tran \\[1em]         \texttt{mtran01@g.uafs.edu}    \vspace{1em} \\
+UAFS Computer Science Department}
+
+
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Data}
+
+The data set consists of 51 columns of decimal values where the target variable(s) is/are either 1 or 5 values. The preprocessing step of the data includes reshaping the data to add an extra dimension. Last but not least, I split the data into 80/20 for training and testing purposes. 
+
+\subsection*{Models}
+
+The model architecture for all tests generally follows either a gated recurrent unit (GRU), long-short term memory (LSTM), or a recurrent neural network (RNN) with an output dense layer matching the number of target variables. 
+
+\subsection*{Evaluation}
+
+
+The model uses mean squared error (MSE) as the loss and Adam as the optimizer. All of the results shown below are conducted by taking the mean MSE score of 5 iterations with 15 epochs and a batch size of 32. Of the results shown below, the SimpleRNN and sequence-to-output model performed the best in my testing. However, the only drawback is that models with SimpleRNN took the longest to train. I am not sure why it performed better than the other state-of-the-art models though. 
+
+\vspace{5mm}
+\centering
+\begin{tabular}{cccc}
+          & Seq-to-Output  & Seq-to-Vec       & Seq-to-Seq       \\
+SimpleRNN & \textbf{0.003} & \textbf{0.00954} & 0.0088           \\
+LSTM      & 0.00378        & 0.01194          & \textbf{0.00706} \\
+GRU       & 0.00408        & 0.0129           & 0.0074          
+\end{tabular}
+
+
+\end{document}
